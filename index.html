@@ -328,13 +328,14 @@ function renderQuiz(entry) {
     });
     sent.replaceChildren.apply(sent, sentence(it.q, it.answer, 'good'));
     var ev = afterAnswer(entry, ok, o);
-    fb.replaceChildren(h('div', {class: 'fb ' + (ok ? 'good' : 'bad')},
+    /* replaceChildren превращает null в текст «null» (в отличие от h()), поэтому пустые узлы отфильтрованы */
+    fb.replaceChildren.apply(fb, [h('div', {class: 'fb ' + (ok ? 'good' : 'bad')},
       h('b', null, ok ? '✓ Верно' : (o === null ? '✗ Правильно так' : '✗ Нужно: ' + label(it.answer))),
       it.why,
       h('div', {class: 'note', style: 'margin-top:6px'}, E.fill(it.q, it.answer))),
       (!ok && ev) ? whyRow(ev) : null,
       h('button', {class: 'big', id: 'next', onclick: function () { ses.i++; step(); }}, 'Дальше'),
-      flagButtons(it));
+      flagButtons(it)].filter(Boolean));
     var n = document.getElementById('next'); if (n) n.scrollIntoView({block: 'nearest'});
   }
   var dk = h('button', {class: 'ghost', onclick: function () { choose(null); }}, 'Не знаю');
