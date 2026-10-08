@@ -1,0 +1,3168 @@
+{
+ "packId": "preposizioni",
+ "version": 1,
+ "title": "Предлоги (основной набор)",
+ "level": "A1-A2",
+ "source": "сгенерировано Claude, носителем не проверено",
+ "license": "авторский (личное использование)",
+ "items": [
+  {
+   "id": "p01",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я живу в Риме.",
+   "q": "Vivo ___ Roma.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "a",
+   "why": "Город → a (a Roma, a Milano).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p02",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я живу в Италии.",
+   "q": "Vivo ___ Italia.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "Страна, регион, континент → in (in Italia, in Toscana, in Europa).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p03",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Завтра я еду в Милан.",
+   "q": "Domani vado ___ Milano.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "a",
+   "why": "Город → a, и «где», и «куда».",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p04",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я еду во Францию.",
+   "q": "Vado ___ Francia.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "Страна → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p05",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Вечером я иду к Марко.",
+   "q": "Stasera vado ___ Marco.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "da",
+   "why": "К человеку / у человека → da (da Marco, da Maria).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p06",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я родом из Рима.",
+   "q": "Sono ___ Roma.",
+   "options": [
+    "di",
+    "a",
+    "in",
+    "su"
+   ],
+   "answer": "di",
+   "why": "Происхождение («родом из») → di. Для «приехал из» → da: Vengo da Roma.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p07",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я приехал из Неаполя.",
+   "q": "Vengo ___ Napoli.",
+   "options": [
+    "da",
+    "di",
+    "a",
+    "in"
+   ],
+   "answer": "da",
+   "why": "Откуда (движение) → da. Для «родом из» → di: Sono di Napoli.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "p08",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я иду домой.",
+   "q": "Vado ___ casa.",
+   "options": [
+    "a",
+    "da",
+    "di",
+    "su"
+   ],
+   "answer": "a",
+   "why": "a casa — устойчивый блок («дома / домой»).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p09",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Дети в школе.",
+   "q": "I bambini sono ___ scuola.",
+   "options": [
+    "a",
+    "da",
+    "di",
+    "su"
+   ],
+   "answer": "a",
+   "why": "a scuola — устойчивый блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p10",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я работаю в банке.",
+   "q": "Lavoro ___ banca.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "in banca — блок. Помещения без чёткого правила: учим парами.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p11",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Он работает в офисе.",
+   "q": "Lui lavora ___ ufficio.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "in ufficio — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p12",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я иду в аптеку.",
+   "q": "Vado ___ farmacia.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "in farmacia — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p13",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я иду в центр.",
+   "q": "Vado ___ centro.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "in centro — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p14",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы в отпуске.",
+   "q": "Siamo ___ vacanza.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "in vacanza — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p15",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы в горах.",
+   "q": "Siamo ___ montagna.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "in montagna — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p16",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я еду на поезде.",
+   "q": "Vado ___ treno.",
+   "options": [
+    "in",
+    "da",
+    "di",
+    "su"
+   ],
+   "answer": "in",
+   "why": "Транспорт → in (in treno, in macchina, in aereo).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p17",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я иду пешком.",
+   "q": "Vado ___ piedi.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "a",
+   "why": "Пешком — исключение из «транспорта → in»: a piedi.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p18",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я еду на машине.",
+   "q": "Vado ___ macchina.",
+   "options": [
+    "in",
+    "da",
+    "di",
+    "su"
+   ],
+   "answer": "in",
+   "why": "Транспорт → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p19",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Сегодня вечером мы у Марии.",
+   "q": "Stasera siamo ___ Maria.",
+   "options": [
+    "da",
+    "a",
+    "in",
+    "di"
+   ],
+   "answer": "da",
+   "why": "«У человека, в гостях у» → da (da Maria, da Marco).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p20",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я иду к врачу.",
+   "q": "Vado ___ medico.",
+   "options": [
+    "dal",
+    "nel",
+    "sul",
+    "del"
+   ],
+   "answer": "dal",
+   "why": "К врачу, в пекарню, к парикмахеру → da + артикль: dal medico (da + il = dal).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p21",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы в кинотеатре.",
+   "q": "Siamo ___ cinema.",
+   "options": [
+    "al",
+    "dal",
+    "del",
+    "sul"
+   ],
+   "answer": "al",
+   "why": "al cinema — блок (a + il = al).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p22",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы идём в ресторан.",
+   "q": "Andiamo ___ ristorante.",
+   "options": [
+    "al",
+    "del",
+    "sul",
+    "dal"
+   ],
+   "answer": "al",
+   "why": "al ristorante — блок (a + il = al).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p23",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я еду в Тоскану.",
+   "q": "Vado ___ Toscana.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "Регион → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p24",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы живём в Турине.",
+   "q": "Abitiamo ___ Torino.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "a",
+   "why": "Город → a.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p25",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы живём в Европе.",
+   "q": "Viviamo ___ Europa.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "Континент → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p26",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я приезжаю в Милан.",
+   "q": "Arrivo ___ Milano.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "di"
+   ],
+   "answer": "a",
+   "why": "Город (куда) → a. Arrivo da Milano — «приезжаю из Милана».",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "p27",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я возвращаюсь в Италию.",
+   "q": "Torno ___ Italia.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "Страна → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p28",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Она в библиотеке.",
+   "q": "Lei è ___ biblioteca.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "in biblioteca — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p29",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Мы на площади.",
+   "q": "Siamo ___ piazza.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "in piazza — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "p30",
+   "type": "gap",
+   "topic": "place",
+   "ru": "Я иду в спортзал.",
+   "q": "Vado ___ palestra.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "in palestra — блок.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t01",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я работаю здесь уже два года.",
+   "q": "Lavoro qui ___ due anni.",
+   "options": [
+    "da",
+    "per",
+    "in",
+    "tra"
+   ],
+   "answer": "da",
+   "why": "Началось и длится до сих пор, глагол в настоящем → da.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t02",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я два года жил в Милане (теперь уже нет).",
+   "q": "Ho abitato a Milano ___ due anni.",
+   "options": [
+    "da",
+    "per",
+    "in",
+    "tra"
+   ],
+   "answer": "per",
+   "why": "Закончившийся срок → per.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t03",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я приеду через два дня.",
+   "q": "Arrivo ___ due giorni.",
+   "options": [
+    "tra",
+    "per",
+    "da",
+    "di"
+   ],
+   "answer": "tra",
+   "why": "«Через» (срок в будущем) → tra или fra.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "t04",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я закончил работу за час.",
+   "q": "Ho finito il lavoro ___ un'ora.",
+   "options": [
+    "in",
+    "per",
+    "da",
+    "tra"
+   ],
+   "answer": "in",
+   "why": "«За» сколько времени уложился → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t05",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я учу итальянский с сентября (и сейчас учу).",
+   "q": "Studio italiano ___ settembre.",
+   "options": [
+    "da",
+    "per",
+    "in",
+    "tra"
+   ],
+   "answer": "da",
+   "why": "«С такого-то момента, до сих пор» → da.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t06",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Фильм начинается в восемь.",
+   "q": "Il film inizia ___ otto.",
+   "options": [
+    "alle",
+    "nelle",
+    "dalle",
+    "delle"
+   ],
+   "answer": "alle",
+   "why": "Час → a + артикль: alle otto (a + le = alle).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t07",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Увидимся на Рождество.",
+   "q": "Ci vediamo ___ Natale.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "su"
+   ],
+   "answer": "a",
+   "why": "Праздник → a (a Natale, a Pasqua).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "t08",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Зимой холодно.",
+   "q": "Fa freddo ___ inverno.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "Сезон → in (in estate, in inverno).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t09",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Курс начался в 2026 году.",
+   "q": "Il corso è iniziato ___ 2026.",
+   "options": [
+    "nel",
+    "al",
+    "dal",
+    "del"
+   ],
+   "answer": "nel",
+   "why": "Год → in + артикль: nel 2026 (in + il = nel). Dal 2026 — «с 2026».",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t10",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Летом я езжу на море.",
+   "q": "___ estate vado al mare.",
+   "options": [
+    "In",
+    "A",
+    "Da",
+    "Su"
+   ],
+   "answer": "In",
+   "why": "Сезон → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t11",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я проспал десять часов.",
+   "q": "Ho dormito ___ dieci ore.",
+   "options": [
+    "per",
+    "da",
+    "in",
+    "tra"
+   ],
+   "answer": "per",
+   "why": "Срок в прошлом, закончился → per (в разговоре его часто опускают).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t12",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я уезжаю на неделю.",
+   "q": "Parto ___ una settimana.",
+   "options": [
+    "per",
+    "da",
+    "tra",
+    "in"
+   ],
+   "answer": "per",
+   "why": "На какой срок → per. Tra una settimana — «через неделю».",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t13",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я не вижу Марко уже два месяца.",
+   "q": "Non vedo Marco ___ due mesi.",
+   "options": [
+    "da",
+    "per",
+    "in",
+    "tra"
+   ],
+   "answer": "da",
+   "why": "Длится до сих пор (глагол в настоящем) → da.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t14",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Поезд отправляется в полночь.",
+   "q": "Il treno parte ___ mezzanotte.",
+   "options": [
+    "a",
+    "in",
+    "da",
+    "su"
+   ],
+   "answer": "a",
+   "why": "Точка во времени → a (a mezzanotte, a mezzogiorno).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t15",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я вернусь через пять минут.",
+   "q": "Torno ___ cinque minuti.",
+   "options": [
+    "tra",
+    "per",
+    "da",
+    "di"
+   ],
+   "answer": "tra",
+   "why": "«Через» → tra или fra.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t16",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я успеваю сделать упражнение за пять минут.",
+   "q": "Riesco a fare l'esercizio ___ cinque minuti.",
+   "options": [
+    "in",
+    "per",
+    "da",
+    "tra"
+   ],
+   "answer": "in",
+   "why": "«За» сколько времени → in.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "t17",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Я живу здесь пять лет (и сейчас живу).",
+   "q": "Abito qui ___ cinque anni.",
+   "options": [
+    "da",
+    "per",
+    "in",
+    "tra"
+   ],
+   "answer": "da",
+   "why": "Началось и длится → da + настоящее время.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "t18",
+   "type": "gap",
+   "topic": "time",
+   "ru": "Магазин открывается в девять.",
+   "q": "Il negozio apre ___ nove.",
+   "options": [
+    "alle",
+    "nelle",
+    "dalle",
+    "sulle"
+   ],
+   "answer": "alle",
+   "why": "Час → a + артикль: alle nove.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v01",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я думаю о тебе.",
+   "q": "Penso ___ te.",
+   "options": [
+    "a",
+    "da",
+    "in",
+    "su"
+   ],
+   "answer": "a",
+   "why": "pensare a — думать о (пара, учим целиком).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v02",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я говорю о работе.",
+   "q": "Parlo ___ lavoro.",
+   "options": [
+    "di",
+    "a",
+    "da",
+    "in"
+   ],
+   "answer": "di",
+   "why": "parlare di — говорить о.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v03",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я верю в Бога.",
+   "q": "Credo ___ Dio.",
+   "options": [
+    "in",
+    "di",
+    "da",
+    "su"
+   ],
+   "answer": "in",
+   "why": "credere in — верить в.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v04",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Это зависит от тебя.",
+   "q": "Dipende ___ te.",
+   "options": [
+    "da",
+    "di",
+    "a",
+    "su"
+   ],
+   "answer": "da",
+   "why": "dipendere da — зависеть от.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v05",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я начинаю учиться.",
+   "q": "Comincio ___ studiare.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "a",
+   "why": "cominciare a + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v06",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я заканчиваю работать в шесть.",
+   "q": "Finisco ___ lavorare alle sei.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "di",
+   "why": "finire di + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v07",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я перестаю курить.",
+   "q": "Smetto ___ fumare.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "di",
+   "why": "smettere di + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v08",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я учусь играть на пианино.",
+   "q": "Imparo ___ suonare il pianoforte.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "a",
+   "why": "imparare a + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v09",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я помогаю тебе готовить.",
+   "q": "Ti aiuto ___ cucinare.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "in"
+   ],
+   "answer": "a",
+   "why": "aiutare a + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v10",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Мне нужна помощь.",
+   "q": "Ho bisogno ___ aiuto.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "in"
+   ],
+   "answer": "di",
+   "why": "avere bisogno di — нуждаться в.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v11",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я жду поезд.",
+   "q": "Aspetto ___ il treno.",
+   "options": [
+    "—",
+    "a",
+    "per",
+    "di"
+   ],
+   "answer": "—",
+   "why": "aspettare — БЕЗ предлога (в русском «ждать» тоже без: ждать поезд).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v12",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я слушаю музыку.",
+   "q": "Ascolto ___ la musica.",
+   "options": [
+    "—",
+    "a",
+    "di",
+    "per"
+   ],
+   "answer": "—",
+   "why": "ascoltare — без предлога.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v13",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я ищу ключи.",
+   "q": "Cerco ___ le chiavi.",
+   "options": [
+    "—",
+    "di",
+    "a",
+    "per"
+   ],
+   "answer": "—",
+   "why": "cercare + существительное — без предлога. (cercare di + инфинитив = «пытаться»).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v14",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я смотрю телевизор.",
+   "q": "Guardo ___ la TV.",
+   "options": [
+    "—",
+    "a",
+    "di",
+    "per"
+   ],
+   "answer": "—",
+   "why": "guardare — без предлога.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v15",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я иду спать.",
+   "q": "Vado ___ dormire.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "a",
+   "why": "andare a + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v16",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Мне хочется мороженого.",
+   "q": "Ho voglia ___ gelato.",
+   "options": [
+    "di",
+    "a",
+    "per",
+    "da"
+   ],
+   "answer": "di",
+   "why": "avere voglia di — хотеться.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v17",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я боюсь темноты.",
+   "q": "Ho paura ___ buio.",
+   "options": [
+    "del",
+    "al",
+    "nel",
+    "sul"
+   ],
+   "answer": "del",
+   "why": "avere paura di + артикль: del buio (di + il = del).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v18",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я надеюсь скоро тебя увидеть.",
+   "q": "Spero ___ vederti presto.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "di",
+   "why": "sperare di + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v19",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я пытаюсь понять.",
+   "q": "Cerco ___ capire.",
+   "options": [
+    "—",
+    "a",
+    "di",
+    "da"
+   ],
+   "answer": "di",
+   "why": "cercare di + инфинитив — «пытаться».",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v20",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я готова ехать.",
+   "q": "Sono pronta ___ partire.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "in"
+   ],
+   "answer": "a",
+   "why": "pronto a + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v21",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я отказываюсь от этой идеи.",
+   "q": "Rinuncio ___ questa idea.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "su"
+   ],
+   "answer": "a",
+   "why": "rinunciare a — отказываться от.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v22",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я занимаюсь логистикой.",
+   "q": "Mi occupo ___ logistica.",
+   "options": [
+    "di",
+    "a",
+    "da",
+    "in"
+   ],
+   "answer": "di",
+   "why": "occuparsi di — заниматься чем-то.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v23",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я захожу в дом.",
+   "q": "Entro ___ casa.",
+   "options": [
+    "in",
+    "a",
+    "da",
+    "di"
+   ],
+   "answer": "in",
+   "why": "entrare in — входить в.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v24",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я звоню Марко.",
+   "q": "Telefono ___ Marco.",
+   "options": [
+    "a",
+    "da",
+    "di",
+    "con"
+   ],
+   "answer": "a",
+   "why": "telefonare a qualcuno — звонить кому-то.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v25",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я играю в футбол.",
+   "q": "Gioco ___ calcio.",
+   "options": [
+    "a",
+    "di",
+    "in",
+    "con"
+   ],
+   "answer": "a",
+   "why": "giocare a — играть в.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v26",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я рассчитываю на тебя.",
+   "q": "Conto ___ te.",
+   "options": [
+    "su",
+    "a",
+    "di",
+    "da"
+   ],
+   "answer": "su",
+   "why": "contare su — рассчитывать на.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v27",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Мне нравится петь.",
+   "q": "Mi piace ___ cantare.",
+   "options": [
+    "—",
+    "di",
+    "a",
+    "per"
+   ],
+   "answer": "—",
+   "why": "piacere + инфинитив — без предлога.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "v28",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я решил уехать.",
+   "q": "Ho deciso ___ partire.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "di",
+   "why": "decidere di + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "v29",
+   "type": "gap",
+   "topic": "verb",
+   "ru": "Я забыл позвонить.",
+   "q": "Ho dimenticato ___ chiamare.",
+   "options": [
+    "a",
+    "di",
+    "da",
+    "per"
+   ],
+   "answer": "di",
+   "why": "dimenticare di + инфинитив.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "a01",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Книга мальчика.",
+   "q": "Il libro ___ ragazzo.",
+   "options": [
+    "del",
+    "dello",
+    "della",
+    "dei"
+   ],
+   "answer": "del",
+   "why": "di + il = del (ragazzo берёт артикль il).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a02",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Я иду на вокзал.",
+   "q": "Vado ___ stazione.",
+   "options": [
+    "alla",
+    "della",
+    "sulla",
+    "dalla"
+   ],
+   "answer": "alla",
+   "why": "a + la = alla.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a03",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Кот на столе.",
+   "q": "Il gatto è ___ tavolo.",
+   "options": [
+    "sul",
+    "nel",
+    "dal",
+    "del"
+   ],
+   "answer": "sul",
+   "why": "su + il = sul.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a04",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Я выхожу из офиса в шесть.",
+   "q": "Esco ___ ufficio alle sei.",
+   "options": [
+    "dall'",
+    "nell'",
+    "sull'",
+    "dell'"
+   ],
+   "answer": "dall'",
+   "why": "da + l' = dall' (перед гласной).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a05",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Я дарю цветы девушкам.",
+   "q": "Regalo i fiori ___ ragazze.",
+   "options": [
+    "alle",
+    "dalle",
+    "nelle",
+    "delle"
+   ],
+   "answer": "alle",
+   "why": "a + le = alle.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a06",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Дом дядей большой.",
+   "q": "La casa ___ zii è grande.",
+   "options": [
+    "degli",
+    "agli",
+    "negli",
+    "sugli"
+   ],
+   "answer": "degli",
+   "why": "di + gli = degli.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a07",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Я иду в университет.",
+   "q": "Vado ___ università.",
+   "options": [
+    "all'",
+    "dell'",
+    "sull'",
+    "dall'"
+   ],
+   "answer": "all'",
+   "why": "a + l' = all' (all'università — блок).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a08",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Сумка девушки.",
+   "q": "La borsa ___ ragazza.",
+   "options": [
+    "della",
+    "alla",
+    "dalla",
+    "sulla"
+   ],
+   "answer": "della",
+   "why": "di + la = della.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a09",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Тетрадь в рюкзаке.",
+   "q": "Il quaderno è ___ zaino.",
+   "options": [
+    "nello",
+    "sullo",
+    "dallo",
+    "dello"
+   ],
+   "answer": "nello",
+   "why": "in + lo = nello (lo zaino).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a10",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Ключи в сумке.",
+   "q": "Le chiavi sono ___ borsa.",
+   "options": [
+    "nella",
+    "sulla",
+    "dalla",
+    "della"
+   ],
+   "answer": "nella",
+   "why": "in + la = nella.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a11",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Я получаю письмо от подруги.",
+   "q": "Ricevo una lettera ___ amica.",
+   "options": [
+    "dall'",
+    "all'",
+    "nell'",
+    "sull'"
+   ],
+   "answer": "dall'",
+   "why": "da + l' = dall' («от»).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a12",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Телефон мальчиков.",
+   "q": "Il telefono ___ ragazzi.",
+   "options": [
+    "dei",
+    "ai",
+    "dai",
+    "nei"
+   ],
+   "answer": "dei",
+   "why": "di + i = dei.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a13",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Я иду к врачу (женщине).",
+   "q": "Vado ___ dottoressa.",
+   "options": [
+    "dalla",
+    "alla",
+    "nella",
+    "sulla"
+   ],
+   "answer": "dalla",
+   "why": "К человеку → da: da + la = dalla.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a14",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Подарки детям.",
+   "q": "I regali ___ bambini.",
+   "options": [
+    "ai",
+    "dai",
+    "nei",
+    "dei"
+   ],
+   "answer": "ai",
+   "why": "a + i = ai (кому?).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a15",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Компьютер на столе.",
+   "q": "Il computer è ___ scrivania.",
+   "options": [
+    "sulla",
+    "nella",
+    "dalla",
+    "della"
+   ],
+   "answer": "sulla",
+   "why": "su + la = sulla.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "a16",
+   "type": "gap",
+   "topic": "art",
+   "ru": "Он идёт к друзьям (в гости).",
+   "q": "Va ___ amici.",
+   "options": [
+    "dagli",
+    "agli",
+    "negli",
+    "degli"
+   ],
+   "answer": "dagli",
+   "why": "К людям → da: da + gli = dagli.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o01",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Этот подарок для тебя.",
+   "q": "Questo regalo è ___ te.",
+   "options": [
+    "per",
+    "di",
+    "con",
+    "su"
+   ],
+   "answer": "per",
+   "why": "«Для» → per.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o02",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Сегодня вечером я иду гулять с Марко.",
+   "q": "Stasera esco ___ Marco.",
+   "options": [
+    "con",
+    "per",
+    "di",
+    "su"
+   ],
+   "answer": "con",
+   "why": "«С» → con.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o03",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Книга написана Данте.",
+   "q": "Il libro è scritto ___ Dante.",
+   "options": [
+    "da",
+    "di",
+    "per",
+    "con"
+   ],
+   "answer": "da",
+   "why": "Кем сделано (пассив) → da.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o04",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Один кофе, пожалуйста.",
+   "q": "Un caffè, ___ favore.",
+   "options": [
+    "per",
+    "di",
+    "da",
+    "con"
+   ],
+   "answer": "per",
+   "why": "per favore — устойчивое выражение.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o05",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Это секрет между нами.",
+   "q": "Questo è un segreto ___ noi.",
+   "options": [
+    "tra",
+    "per",
+    "su",
+    "con"
+   ],
+   "answer": "tra",
+   "why": "«Между» → tra или fra.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o06",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Я пью стакан вина.",
+   "q": "Bevo un bicchiere ___ vino.",
+   "options": [
+    "di",
+    "da",
+    "per",
+    "con"
+   ],
+   "answer": "di",
+   "why": "Содержимое → di: un bicchiere di vino. (da vino = «бокал для вина», см. следующий вопрос).",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o07",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Бокал для вина (сама посуда).",
+   "q": "Un bicchiere ___ vino.",
+   "options": [
+    "da",
+    "di",
+    "per",
+    "con"
+   ],
+   "answer": "da",
+   "why": "Назначение предмета → da: un bicchiere da vino, una macchina da corsa.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o08",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Я прочитал книгу о Риме.",
+   "q": "Ho letto un libro ___ Roma.",
+   "options": [
+    "su",
+    "per",
+    "da",
+    "con"
+   ],
+   "answer": "su",
+   "why": "«О» (тема книги, фильма) → su.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "o09",
+   "type": "gap",
+   "topic": "other",
+   "ru": "Я уезжаю в Рим.",
+   "q": "Parto ___ Roma.",
+   "options": [
+    "per",
+    "a",
+    "in",
+    "da"
+   ],
+   "answer": "per",
+   "why": "partire per + место — направление отъезда. Parto da Roma — «уезжаю из Рима».",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k01",
+   "type": "card",
+   "topic": "place",
+   "front": "дома / домой",
+   "back": "a casa",
+   "example": "Sono a casa. Vado a casa.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k02",
+   "type": "card",
+   "topic": "place",
+   "front": "в школе",
+   "back": "a scuola",
+   "example": "I bambini sono a scuola.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k03",
+   "type": "card",
+   "topic": "place",
+   "front": "в кино",
+   "back": "al cinema",
+   "example": "Stasera andiamo al cinema.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k04",
+   "type": "card",
+   "topic": "place",
+   "front": "в баре",
+   "back": "al bar",
+   "example": "Prendo un caffè al bar.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k05",
+   "type": "card",
+   "topic": "place",
+   "front": "в ресторане",
+   "back": "al ristorante",
+   "example": "Mangiamo al ristorante.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k06",
+   "type": "card",
+   "topic": "place",
+   "front": "в университете",
+   "back": "all'università",
+   "example": "Studio all'università.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k07",
+   "type": "card",
+   "topic": "place",
+   "front": "на море",
+   "back": "al mare",
+   "example": "D'estate vado al mare.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k08",
+   "type": "card",
+   "topic": "place",
+   "front": "в театре",
+   "back": "a teatro",
+   "example": "Stasera andiamo a teatro.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k09",
+   "type": "card",
+   "topic": "place",
+   "front": "в банке",
+   "back": "in banca",
+   "example": "Lavoro in banca.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k10",
+   "type": "card",
+   "topic": "place",
+   "front": "в офисе",
+   "back": "in ufficio",
+   "example": "Sono in ufficio.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k11",
+   "type": "card",
+   "topic": "place",
+   "front": "в аптеке",
+   "back": "in farmacia",
+   "example": "Vado in farmacia.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k12",
+   "type": "card",
+   "topic": "place",
+   "front": "в церкви",
+   "back": "in chiesa",
+   "example": "Siamo in chiesa.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k13",
+   "type": "card",
+   "topic": "place",
+   "front": "в центре",
+   "back": "in centro",
+   "example": "Abito in centro.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k14",
+   "type": "card",
+   "topic": "place",
+   "front": "в городе",
+   "back": "in città",
+   "example": "Vivo in città.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k15",
+   "type": "card",
+   "topic": "place",
+   "front": "в горах",
+   "back": "in montagna",
+   "example": "Andiamo in montagna.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k16",
+   "type": "card",
+   "topic": "place",
+   "front": "в отпуске",
+   "back": "in vacanza",
+   "example": "Siamo in vacanza.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k17",
+   "type": "card",
+   "topic": "place",
+   "front": "за городом, в деревне",
+   "back": "in campagna",
+   "example": "Abitiamo in campagna.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k18",
+   "type": "card",
+   "topic": "place",
+   "front": "в библиотеке",
+   "back": "in biblioteca",
+   "example": "Studio in biblioteca.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k19",
+   "type": "card",
+   "topic": "place",
+   "front": "в спортзале",
+   "back": "in palestra",
+   "example": "Vado in palestra.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k20",
+   "type": "card",
+   "topic": "place",
+   "front": "на поезде",
+   "back": "in treno",
+   "example": "Viaggio in treno.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k21",
+   "type": "card",
+   "topic": "place",
+   "front": "на машине",
+   "back": "in macchina",
+   "example": "Vado in macchina.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k22",
+   "type": "card",
+   "topic": "place",
+   "front": "на самолёте",
+   "back": "in aereo",
+   "example": "Viaggio in aereo.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k23",
+   "type": "card",
+   "topic": "place",
+   "front": "на велосипеде",
+   "back": "in bicicletta",
+   "example": "Vado in bicicletta.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k24",
+   "type": "card",
+   "topic": "place",
+   "front": "пешком",
+   "back": "a piedi",
+   "example": "Vado a piedi.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k25",
+   "type": "card",
+   "topic": "place",
+   "front": "к врачу",
+   "back": "dal medico",
+   "example": "Vado dal medico.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k26",
+   "type": "card",
+   "topic": "place",
+   "front": "в пекарню (к булочнику)",
+   "back": "dal panettiere",
+   "example": "Vado dal panettiere.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k27",
+   "type": "card",
+   "topic": "place",
+   "front": "ко мне / у меня",
+   "back": "da me",
+   "example": "Vieni da me stasera.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k28",
+   "type": "card",
+   "topic": "place",
+   "front": "к тебе / у тебя",
+   "back": "da te",
+   "example": "Vengo da te domani.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k29",
+   "type": "card",
+   "topic": "place",
+   "front": "к Марко / у Марко",
+   "back": "da Marco",
+   "example": "Stasera vado da Marco.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k30",
+   "type": "card",
+   "topic": "place",
+   "front": "в Италии",
+   "back": "in Italia",
+   "example": "Vivo in Italia.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k31",
+   "type": "card",
+   "topic": "place",
+   "front": "в Риме",
+   "back": "a Roma",
+   "example": "Vivo a Roma.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k40",
+   "type": "card",
+   "topic": "time",
+   "front": "с сентября (и до сих пор)",
+   "back": "da settembre",
+   "example": "Studio italiano da settembre.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k41",
+   "type": "card",
+   "topic": "time",
+   "front": "уже два года",
+   "back": "da due anni",
+   "example": "Studio italiano da due anni.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k42",
+   "type": "card",
+   "topic": "time",
+   "front": "на неделю (срок)",
+   "back": "per una settimana",
+   "example": "Vado a Roma per una settimana.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k43",
+   "type": "card",
+   "topic": "time",
+   "front": "два часа (закончено)",
+   "back": "per due ore",
+   "example": "Ho studiato per due ore.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k44",
+   "type": "card",
+   "topic": "time",
+   "front": "за час (уложился)",
+   "back": "in un'ora",
+   "example": "Ho finito in un'ora.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k45",
+   "type": "card",
+   "topic": "time",
+   "front": "через два дня",
+   "back": "tra due giorni (= fra due giorni)",
+   "example": "Arrivo tra due giorni.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k46",
+   "type": "card",
+   "topic": "time",
+   "front": "в восемь (часов)",
+   "back": "alle otto",
+   "example": "Ci vediamo alle otto.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k47",
+   "type": "card",
+   "topic": "time",
+   "front": "в час дня",
+   "back": "all'una",
+   "example": "Pranzo all'una.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k48",
+   "type": "card",
+   "topic": "time",
+   "front": "в полночь",
+   "back": "a mezzanotte",
+   "example": "Il treno parte a mezzanotte.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k49",
+   "type": "card",
+   "topic": "time",
+   "front": "в полдень",
+   "back": "a mezzogiorno",
+   "example": "Pranzo a mezzogiorno.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k50",
+   "type": "card",
+   "topic": "time",
+   "front": "на Рождество",
+   "back": "a Natale",
+   "example": "Ci vediamo a Natale.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k51",
+   "type": "card",
+   "topic": "time",
+   "front": "на Пасху",
+   "back": "a Pasqua",
+   "example": "A Pasqua andiamo in montagna.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k52",
+   "type": "card",
+   "topic": "time",
+   "front": "летом",
+   "back": "in estate",
+   "example": "In estate vado al mare.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k53",
+   "type": "card",
+   "topic": "time",
+   "front": "зимой",
+   "back": "in inverno",
+   "example": "Fa freddo in inverno.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k54",
+   "type": "card",
+   "topic": "time",
+   "front": "весной",
+   "back": "in primavera",
+   "example": "In primavera fa bel tempo.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k55",
+   "type": "card",
+   "topic": "time",
+   "front": "осенью",
+   "back": "in autunno",
+   "example": "In autunno piove spesso.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k56",
+   "type": "card",
+   "topic": "time",
+   "front": "в 2026 году",
+   "back": "nel 2026",
+   "example": "Il corso è iniziato nel 2026.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k57",
+   "type": "card",
+   "topic": "time",
+   "front": "в понедельник (в этот)",
+   "back": "lunedì (без предлога)",
+   "example": "Lunedì vado in palestra.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k58",
+   "type": "card",
+   "topic": "time",
+   "front": "по понедельникам",
+   "back": "il lunedì",
+   "example": "Il lunedì vado in palestra.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k70",
+   "type": "card",
+   "topic": "verb",
+   "front": "думать о",
+   "back": "pensare a",
+   "example": "Penso a te.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k71",
+   "type": "card",
+   "topic": "verb",
+   "front": "говорить о",
+   "back": "parlare di",
+   "example": "Parlo di lavoro.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k72",
+   "type": "card",
+   "topic": "verb",
+   "front": "верить в",
+   "back": "credere in",
+   "example": "Credo in Dio.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k73",
+   "type": "card",
+   "topic": "verb",
+   "front": "зависеть от",
+   "back": "dipendere da",
+   "example": "Dipende da te.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k74",
+   "type": "card",
+   "topic": "verb",
+   "front": "начинать (делать)",
+   "back": "cominciare a + инфинитив",
+   "example": "Comincio a studiare.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k75",
+   "type": "card",
+   "topic": "verb",
+   "front": "заканчивать (делать)",
+   "back": "finire di + инфинитив",
+   "example": "Finisco di lavorare alle sei.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k76",
+   "type": "card",
+   "topic": "verb",
+   "front": "перестать (делать)",
+   "back": "smettere di + инфинитив",
+   "example": "Smetto di fumare.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k77",
+   "type": "card",
+   "topic": "verb",
+   "front": "учиться (делать)",
+   "back": "imparare a + инфинитив",
+   "example": "Imparo a suonare il pianoforte.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k78",
+   "type": "card",
+   "topic": "verb",
+   "front": "помогать (делать)",
+   "back": "aiutare a + инфинитив",
+   "example": "Ti aiuto a cucinare.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k79",
+   "type": "card",
+   "topic": "verb",
+   "front": "нуждаться в",
+   "back": "avere bisogno di",
+   "example": "Ho bisogno di aiuto.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k80",
+   "type": "card",
+   "topic": "verb",
+   "front": "хотеться (чего-то)",
+   "back": "avere voglia di",
+   "example": "Ho voglia di gelato.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k81",
+   "type": "card",
+   "topic": "verb",
+   "front": "бояться",
+   "back": "avere paura di",
+   "example": "Ho paura del buio.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k82",
+   "type": "card",
+   "topic": "verb",
+   "front": "надеяться",
+   "back": "sperare di + инфинитив",
+   "example": "Spero di vederti presto.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k83",
+   "type": "card",
+   "topic": "verb",
+   "front": "пытаться",
+   "back": "cercare di + инфинитив",
+   "example": "Cerco di capire.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k84",
+   "type": "card",
+   "topic": "verb",
+   "front": "решить (сделать)",
+   "back": "decidere di + инфинитив",
+   "example": "Ho deciso di partire.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k85",
+   "type": "card",
+   "topic": "verb",
+   "front": "забыть (сделать)",
+   "back": "dimenticare di + инфинитив",
+   "example": "Ho dimenticato di chiamare.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k86",
+   "type": "card",
+   "topic": "verb",
+   "front": "звонить (кому-то)",
+   "back": "telefonare a",
+   "example": "Telefono a Marco.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k87",
+   "type": "card",
+   "topic": "verb",
+   "front": "играть (в игру, спорт)",
+   "back": "giocare a",
+   "example": "Gioco a calcio.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k88",
+   "type": "card",
+   "topic": "verb",
+   "front": "заниматься (чем-то)",
+   "back": "occuparsi di",
+   "example": "Mi occupo di logistica.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k89",
+   "type": "card",
+   "topic": "verb",
+   "front": "отказываться от",
+   "back": "rinunciare a",
+   "example": "Rinuncio a questa idea.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k90",
+   "type": "card",
+   "topic": "verb",
+   "front": "рассчитывать на",
+   "back": "contare su",
+   "example": "Conto su di te.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k91",
+   "type": "card",
+   "topic": "verb",
+   "front": "входить в",
+   "back": "entrare in",
+   "example": "Entro in casa.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k92",
+   "type": "card",
+   "topic": "verb",
+   "front": "ждать",
+   "back": "aspettare (без предлога)",
+   "example": "Aspetto il treno.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k93",
+   "type": "card",
+   "topic": "verb",
+   "front": "слушать",
+   "back": "ascoltare (без предлога)",
+   "example": "Ascolto la musica.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k94",
+   "type": "card",
+   "topic": "verb",
+   "front": "искать",
+   "back": "cercare (без предлога)",
+   "example": "Cerco le chiavi.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k95",
+   "type": "card",
+   "topic": "verb",
+   "front": "смотреть",
+   "back": "guardare (без предлога)",
+   "example": "Guardo la TV.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k96",
+   "type": "card",
+   "topic": "verb",
+   "front": "быть готовой (сделать)",
+   "back": "essere pronto a + инфинитив",
+   "example": "Sono pronta a partire.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": true
+  },
+  {
+   "id": "k97",
+   "type": "card",
+   "topic": "verb",
+   "front": "идти (делать что-то)",
+   "back": "andare a + инфинитив",
+   "example": "Vado a dormire.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k110",
+   "type": "card",
+   "topic": "other",
+   "front": "пожалуйста (в просьбе)",
+   "back": "per favore",
+   "example": "Un caffè, per favore.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k111",
+   "type": "card",
+   "topic": "other",
+   "front": "для тебя",
+   "back": "per te",
+   "example": "Questo regalo è per te.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k112",
+   "type": "card",
+   "topic": "other",
+   "front": "с Марко",
+   "back": "con Marco",
+   "example": "Esco con Marco.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k113",
+   "type": "card",
+   "topic": "other",
+   "front": "между нами",
+   "back": "tra noi (= fra noi)",
+   "example": "È un segreto tra noi.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k114",
+   "type": "card",
+   "topic": "other",
+   "front": "стакан вина (содержимое)",
+   "back": "un bicchiere di vino",
+   "example": "Bevo un bicchiere di vino.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k115",
+   "type": "card",
+   "topic": "other",
+   "front": "бокал для вина (назначение)",
+   "back": "un bicchiere da vino",
+   "example": "Ho comprato un bicchiere da vino.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k116",
+   "type": "card",
+   "topic": "other",
+   "front": "книга о Риме (тема)",
+   "back": "un libro su Roma",
+   "example": "Ho letto un libro su Roma.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  },
+  {
+   "id": "k117",
+   "type": "card",
+   "topic": "other",
+   "front": "написано кем-то (пассив)",
+   "back": "scritto da Dante",
+   "example": "Il libro è scritto da Dante.",
+   "trust": {
+    "origin": "generated",
+    "check": "none"
+   },
+   "retired": false
+  }
+ ]
+}

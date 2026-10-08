@@ -78,79 +78,58 @@ textarea{width:100%;min-height:150px;border:1px solid var(--line);border-radius:
 .note{color:var(--muted);font-size:14px}
 .warn{background:var(--bad-soft);color:var(--bad);border-radius:12px;padding:10px 12px;margin:10px 0;font-size:15px}
 .tip{background:var(--acc-soft);border-radius:12px;padding:10px 12px;margin:10px 0;font-size:15px}
-.tip button{float:right;background:none;border:0;color:var(--muted);font-size:20px;line-height:1;margin:-4px -4px 0 8px}
+.tip .link{float:none;margin:0;font-size:15px;padding:0}
+.tip button:not(.link){float:right;background:none;border:0;color:var(--muted);font-size:20px;line-height:1;margin:-4px -4px 0 8px}
 .seg{display:flex;gap:8px}
 .seg button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px;font-size:17px}
 .seg button.on{background:var(--acc);color:var(--acc-fg);border-color:var(--acc)}
 .mist{margin:6px 0;padding:8px 10px;border-radius:10px;background:var(--bad-soft);font-size:16px}
 .mist i{color:var(--it)}
 .res{font-size:44px;font-weight:700;text-align:center;margin:10px 0 0}
+input[type=text]{display:block;width:100%;margin:8px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg);padding:12px;font:inherit;font-size:17px}
+.why{margin-top:10px}
 footer{margin-top:28px;color:var(--muted);font-size:12px;text-align:center}
 </style>
 </head>
 <body>
 <div id="app"></div>
-<script src="questions.js"></script>
+<script src="engine.js"></script>
 <script>
 (function () {
 'use strict';
 
-/* ================= Константы и данные ================= */
-var KEY = 'preposizioni-v1';
-var VERSION = '1.0';
-var CAT = {place:'Место', time:'Время', verb:'Глагол + предлог', art:'Слияния', other:'Другое'};
-var CAT_LOW = {place:'место', time:'время', verb:'глагол', art:'слияние', other:'другое'};
-var CAT_KEYS = ['place','time','verb','art','other'];
-// Интервалы повторения (дни) по «коробкам» Лейтнера. Стартовая схема, не из источника; можно менять.
-var INTERVALS = [0, 1, 2, 4, 7, 14, 30];
-var MASTERED_BOX = 4;
-var Q = window.QUESTIONS || [];
-var K = window.CARDS || [];
-var ALL = Q.concat(K);
-var BYID = {};
-ALL.forEach(function (x) { BYID[x.id] = x; });
+/* ================= Константы ================= */
+var E = window.Engine;
+var VERSION = '2.0';
+var BUILTIN_PACKS = ['packs/preposizioni.json'];   // встроенные пакеты (кэшируются service worker'ом)
+var CAT = E.TOPICS, CAT_LOW = E.TOPIC_LOW, CAT_KEYS = E.TOPIC_KEYS;
+var CATALOG = {items: [], byKey: {}, packs: [], rejected: []};
+var BUILTIN_RAW = [], BUILTIN_BAD = 0;
 var storageOk = true;
+var S = E.freshState();
 
-/* ================= Даты ================= */
-function pad(n) { return String(n).padStart(2, '0'); }
-function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-function today() { return ymd(new Date()); }
-function parse(s) { var p = s.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
-function addDays(s, n) { var d = parse(s); d.setDate(d.getDate() + n); return ymd(d); }
-function isoWeek(s) {
-  var l = parse(s);
-  var d = new Date(Date.UTC(l.getFullYear(), l.getMonth(), l.getDate()));
-  var dayNum = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  var w = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-  return d.getUTCFullYear() + '-W' + pad(w);
-}
+function today() { return E.ymd(new Date()); }
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function why(k) { return cap(CAT_LOW[k]); }
 
-/* ================= Состояние ================= */
-function fresh() { return {v:1, items:{}, log:[], sessions:[], settings:{size:5, cat:'all', tipHidden:false}}; }
-function load() {
-  try {
-    var r = localStorage.getItem(KEY);
-    if (r) {
-      var s = JSON.parse(r);
-      if (s && s.v === 1) {
-        s.items = s.items || {}; s.log = s.log || []; s.sessions = s.sessions || [];
-        s.settings = Object.assign(fresh().settings, s.settings || {});
-        return s;
-      }
-    }
-  } catch (e) { storageOk = false; }
-  return fresh();
+/* ================= Состояние и пакеты ================= */
+function save() { if (!E.saveState(localStorage, S, today())) storageOk = false; }
+function importedRaw() { return E.loadImportedPacks(localStorage); }
+function importedIds() { return importedRaw().map(function (p) { return p && p.packId; }); }
+function rebuildCatalog() {
+  CATALOG = E.buildCatalog(BUILTIN_RAW.concat(importedRaw()));
+  for (var i = 0; i < BUILTIN_BAD; i++) CATALOG.rejected.push({packId: '?', errors: ['не загрузился файл пакета']});
+  if (S.settings.pack !== 'all' && !CATALOG.packs.some(function (p) { return p.packId === S.settings.pack; })) S.settings.pack = 'all';
 }
-function save() {
-  var cut = addDays(today(), -120);
-  S.log = S.log.filter(function (x) { return x.d >= cut; });
-  S.sessions = S.sessions.filter(function (x) { return x.d >= cut; });
-  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { storageOk = false; }
+/* Действующие пакеты целиком (лучшая версия каждого, только годные): для копии и для правил обновления. */
+function activeRaw() {
+  var best = {};
+  BUILTIN_RAW.concat(importedRaw()).forEach(function (p) {
+    if (!p || E.validatePack(p).length) return;
+    if (!best[p.packId] || best[p.packId].version < p.version) best[p.packId] = p;
+  });
+  return Object.keys(best).map(function (k) { return best[k]; });
 }
-try { localStorage.setItem(KEY + '-t', '1'); localStorage.removeItem(KEY + '-t'); } catch (e) { storageOk = false; }
-var S = load();
 
 /* ================= Утилиты DOM ================= */
 function h(tag, attrs) {
@@ -176,10 +155,6 @@ function shuffle(a) {
   return a;
 }
 function label(o) { return o === '—' ? '— (без предлога)' : o; }
-function fill(q, opt) {
-  if (opt === '—') return q.replace(/ ?___/, '').replace(/\s+/g, ' ').trim();
-  return q.replace('___', opt);
-}
 function sentence(q, fillText, cls) {
   var parts = q.split('___');
   return [parts[0], h('span', {class: 'blank' + (cls ? ' ' + cls : '')}, fillText || '＿＿'), parts[1] || ''];
@@ -193,55 +168,54 @@ function copyFrom(ta, btn) {
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, fallback);
   else fallback();
 }
-
-/* ================= Статистика ================= */
-function streakInfo() {
-  var t = today(), days = {};
-  S.sessions.forEach(function (x) { days[x.d] = true; });
-  var d = days[t] ? t : addDays(t, -1), n = 0;
-  while (days[d]) { n++; d = addDays(d, -1); }
-  return n;
+function countType(type) {
+  return CATALOG.items.filter(function (x) { return x.type === type && E.isActive(S, x); }).length;
 }
-function accByCat(daysBack) {
-  var from = addDays(today(), -(daysBack - 1)), r = {};
-  CAT_KEYS.forEach(function (k) { r[k] = {n: 0, ok: 0}; });
-  S.log.forEach(function (x) {
-    if (x.d < from) return;
-    var it = BYID[x.id]; if (!it) return;
-    r[it.cat].n++; r[it.cat].ok += x.ok;
-  });
-  return r;
-}
+function backBar(fn) { return h('div', {class: 'top'}, h('button', {class: 'back', onclick: fn || home}, '‹ Домой'), h('span')); }
+function itemText(x) { return x.type === 'gap' ? E.fill(x.q, x.answer) : x.front + ' → ' + x.back; }
 
 /* ================= Главный экран ================= */
+function reviewCount() {
+  return E.weekErrors(CATALOG, S, today(), 7).app.filter(function (r) { return r.active; }).length;
+}
 function home() {
   var t = today();
   var sessToday = S.sessions.filter(function (x) { return x.d === t; }).length;
-  var mastered = ALL.filter(function (x) { return S.items[x.id] && S.items[x.id].box >= MASTERED_BOX; }).length;
-  var acc = accByCat(14);
-  var dueCount = ALL.filter(function (x) { return S.items[x.id] && S.items[x.id].seen > 0 && S.items[x.id].due <= t; }).length;
+  var m = E.masteredCount(CATALOG, S);
+  var acc = E.accByTopic(CATALOG, S, 14, t);
+  var dueCount = E.dueCount(CATALOG, S, t);
+  var rev = reviewCount();
   var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   var standalone = window.navigator.standalone === true || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
 
   var root = h('div', null,
     h('h1', null, 'Preposizioni'),
-    h('div', {class: 'sub'}, 'предлоги · 5 вопросов — это уже занятие'),
+    h('div', {class: 'sub'}, '5 вопросов — это уже занятие'),
     !storageOk ? h('div', {class: 'warn'}, 'Браузер не разрешает сохранять прогресс. Занимайся, но статистика пропадёт при закрытии.') : null,
+    CATALOG.rejected.length ? h('div', {class: 'warn'}, 'Часть материалов не загрузилась (пакетов с ошибками: ' + CATALOG.rejected.length + '). Остальное работает.') : null,
+    E.backupNudge(S, t) ? h('div', {class: 'tip', 'data-role': 'nudge'}, 'Резервной копии давно не было. ', h('button', {class: 'link', onclick: backupView}, 'Сделать копию')) : null,
     (isIOS && !standalone && !S.settings.tipHidden) ? h('div', {class: 'tip'},
       h('button', {'aria-label': 'Скрыть', onclick: function () { S.settings.tipHidden = true; save(); home(); }}, '×'),
       'Чтобы открывать как приложение: «Поделиться» → «На экран “Домой”».') : null,
     h('div', {class: 'row'},
-      stat(streakInfo(), 'дней подряд'),
+      stat(E.streak(S, t), 'дней подряд'),
       stat(sessToday, 'подходов сегодня'),
-      stat(mastered + '/' + ALL.length, 'освоено')),
+      stat(m.mastered + '/' + m.total, 'освоено')),
+    CATALOG.packs.length > 1 ? [
+      h('h2', null, 'Пакет'),
+      h('div', {class: 'chips'},
+        packChip('all', 'Все'),
+        CATALOG.packs.map(function (p) { return packChip(p.packId, p.title); }))] : null,
     h('h2', null, 'Тема'),
     h('div', {class: 'chips'},
       chip('all', 'Все'),
       CAT_KEYS.map(function (k) { return chip(k, CAT[k]); })),
-    h('button', {class: 'big', onclick: function () { startSession('quiz'); }},
+    h('button', {class: 'big', onclick: function () { startSession('gap'); }},
       'Вопросы', h('small', null, S.settings.size + ' штук · выбери предлог')),
-    h('button', {class: 'big alt', onclick: function () { startSession('cards'); }},
+    h('button', {class: 'big alt', onclick: function () { startSession('card'); }},
       'Карточки', h('small', null, S.settings.size + ' штук · блоки «слово + предлог»')),
+    rev ? h('button', {class: 'big alt', 'data-role': 'review', onclick: startReview},
+      'Разбор недели', h('small', null, 'ошибки за 7 дней · пунктов: ' + rev)) : null,
     dueCount ? h('div', {class: 'note'}, 'К повторению сегодня: ' + dueCount) : null,
     h('h2', null, 'Как идёт (14 дней)'),
     CAT_KEYS.map(function (k) {
@@ -251,10 +225,11 @@ function home() {
         h('div', {class: 'tr'}, h('div', {class: 'fl', style: 'width:' + p + '%'})));
     }),
     h('div', {class: 'links'},
-      h('button', {class: 'link', onclick: reportView}, 'Отчёт недели'),
+      h('button', {class: 'link', onclick: function () { errorsView(); }}, 'Тетрадь ошибок'),
+      h('button', {class: 'link', 'data-role': 'journal', onclick: function () { journalView(0); }}, 'Журнал для Obsidian'),
       h('button', {class: 'link', onclick: backupView}, 'Резервная копия'),
       h('button', {class: 'link', onclick: settingsView}, 'Настройки')),
-    h('footer', null, 'v' + VERSION + ' · вопросов: ' + Q.length + ' · карточек: ' + K.length)
+    h('footer', null, 'v' + VERSION + ' · вопросов: ' + countType('gap') + ' · карточек: ' + countType('card'))
   );
   show(root);
 }
@@ -262,66 +237,82 @@ function stat(v, l) { return h('div', {class: 'stat'}, h('b', null, v), h('span'
 function chip(key, text) {
   return h('button', {class: 'chip' + (S.settings.cat === key ? ' on' : ''), onclick: function () { S.settings.cat = key; save(); home(); }}, text);
 }
-
-/* ================= Подбор вопросов ================= */
-function buildQueue(mode) {
-  var t = today(), size = S.settings.size;
-  var pool = (mode === 'quiz' ? Q : K).filter(function (x) { return S.settings.cat === 'all' || x.cat === S.settings.cat; });
-  shuffle(pool);
-  var st = function (x) { return S.items[x.id]; };
-  var due = pool.filter(function (x) { return st(x) && st(x).seen > 0 && st(x).due <= t; })
-                .sort(function (a, b) { return st(a).due < st(b).due ? -1 : st(a).due > st(b).due ? 1 : 0; });
-  var fresh_ = pool.filter(function (x) { return !st(x) || st(x).seen === 0; });
-  var rest = pool.filter(function (x) { return st(x) && st(x).seen > 0 && st(x).due > t; })
-                 .sort(function (a, b) { return st(a).due < st(b).due ? -1 : st(a).due > st(b).due ? 1 : 0; });
-  return due.concat(fresh_).concat(rest).slice(0, size);
+function packChip(key, text) {
+  return h('button', {class: 'chip' + (S.settings.pack === key ? ' on' : ''), 'data-pack': key, onclick: function () { S.settings.pack = key; save(); home(); }}, text);
 }
 
 /* ================= Сессия ================= */
 var ses = null;
 function startSession(mode) {
-  var q = buildQueue(mode);
+  var q = E.buildQueue(CATALOG, S, mode, today());
   if (!q.length) { home(); return; }
+  beginSession(mode, q);
+}
+function startReview() {
+  var q = E.buildReviewQueue(CATALOG, S, today());
+  if (!q.length) { home(); return; }
+  beginSession('review', q);
+}
+function beginSession(mode, q) {
   ses = {mode: mode, list: q.map(function (x) { return {it: x, retry: false}; }), i: 0, total: q.length, ok: 0, wrong: []};
   step();
 }
 function step() {
   if (ses.i >= ses.list.length) return finish();
   var e = ses.list[ses.i];
-  if (ses.mode === 'quiz') renderQuiz(e); else renderCard(e);
+  if (e.it.type === 'gap') renderQuiz(e); else renderCard(e);
 }
 function topBar() {
   var e = ses.list[ses.i];
-  var txt = e.retry ? 'повтор ошибки' : (Math.min(ses.i + 1, ses.total) + ' / ' + ses.total);
+  var txt = e.retry ? 'повтор ошибки' : (ses.mode === 'review' ? 'разбор · ' : '') + (Math.min(ses.i + 1, ses.total) + ' / ' + ses.total);
   return h('div', {class: 'top'},
     h('button', {class: 'back', onclick: function () { ses = null; home(); }}, '‹ Домой'),
     h('span', null, txt));
 }
-function record(it, ok, chosen, retry) {
-  var t = today();
-  var s = S.items[it.id] || (S.items[it.id] = {box: 0, due: t, seen: 0, wrong: 0});
-  if (retry) {
-    // повтор после ошибки в этом же подходе: не пишем в журнал, лишь закрепляем
-    if (ok) { s.box = 1; s.due = addDays(t, INTERVALS[1]); }
-    return;
-  }
-  s.seen++;
-  if (ok) { s.box = Math.min(s.box + 1, INTERVALS.length - 1); s.due = addDays(t, INTERVALS[s.box]); }
-  else { s.wrong++; s.box = 0; s.due = t; s.lw = chosen == null ? '' : chosen; }
-  S.log.push({d: t, id: it.id, ok: ok ? 1 : 0});
-}
 function afterAnswer(entry, ok, chosen) {
-  record(entry.it, ok, chosen, entry.retry);
+  var ev = E.recordAnswer(S, entry.it, ok, chosen, entry.retry, today(), Date.now());
   if (!entry.retry) {
     if (ok) ses.ok++;
     else { ses.wrong.push(entry.it); ses.list.push({it: entry.it, retry: true}); }
   }
   save();
+  return ev;
+}
+/* «Сомневаюсь» (не уверена, что пункт правильный) и «Рано» (ещё не проходила): оба убирают пункт из занятий, статистика остаётся.
+ * Вернуть можно в Настройках; «Рано» собирается отдельным списком «на потом». */
+function flagButtons(it) {
+  function mk(role, text, doneText, fn) {
+    var b = h('button', {class: 'ghost', 'data-role': role, onclick: function () {
+      fn(S, it.key, true, today()); save();
+      b.disabled = true; b.textContent = doneText;
+    }}, text);
+    return b;
+  }
+  var d = mk('doubt', 'Сомневаюсь в этом пункте', 'Убрано из занятий ✓ (вернуть: Настройки)', E.setDoubt);
+  var r = mk('early', 'Рано: ещё не проходила', 'Отложено «на потом» ✓ (вернуть: Настройки)', E.setEarly);
+  d.addEventListener('click', function () { r.style.display = 'none'; });
+  r.addEventListener('click', function () { d.style.display = 'none'; });
+  return h('div', null, d, r);
+}
+/* «Почему?»: после ошибки одна строка кнопок, можно пропустить (просто «Дальше»). Повторное нажатие на выбранную причину стирает её. */
+function whyRow(ev) {
+  var row = h('div', {class: 'why', 'data-role': 'why'}, h('div', {class: 'note'}, 'Почему ошиблась?'));
+  var chips = h('div', {class: 'chips'});
+  CAT_KEYS.forEach(function (k) {
+    var b = h('button', {class: 'chip', 'data-why': k, onclick: function () {
+      var on = ev.why === k;
+      E.setWhy(S, ev, on ? null : k); save();
+      Array.prototype.forEach.call(chips.children, function (c) { c.classList.toggle('on', c.getAttribute('data-why') === ev.why); });
+    }}, why(k));
+    chips.appendChild(b);
+  });
+  row.appendChild(chips);
+  return row;
 }
 
 function renderQuiz(entry) {
   var it = entry.it, answered = false;
-  var opts = shuffle(it.o.slice());
+  var opts = shuffle(it.options.slice());
   var sent = h('div', {class: 'it'}, sentence(it.q));
   var fb = h('div');
   var buttons = opts.map(function (o) {
@@ -329,19 +320,21 @@ function renderQuiz(entry) {
   });
   function choose(o) {
     if (answered) return; answered = true;
-    var ok = o === it.a;
+    var ok = o === it.answer;
     buttons.forEach(function (b) {
       b.disabled = true;
       var v = b.getAttribute('data-o');
-      if (v === it.a) b.classList.add('good'); else if (v === o) b.classList.add('bad');
+      if (v === it.answer) b.classList.add('good'); else if (v === o) b.classList.add('bad');
     });
-    sent.replaceChildren.apply(sent, sentence(it.q, it.a, 'good'));  // в пропуске всегда правильный вариант (зелёным)
+    sent.replaceChildren.apply(sent, sentence(it.q, it.answer, 'good'));
+    var ev = afterAnswer(entry, ok, o);
     fb.replaceChildren(h('div', {class: 'fb ' + (ok ? 'good' : 'bad')},
-      h('b', null, ok ? '✓ Верно' : (o === null ? '✗ Правильно так' : '✗ Нужно: ' + label(it.a))),
+      h('b', null, ok ? '✓ Верно' : (o === null ? '✗ Правильно так' : '✗ Нужно: ' + label(it.answer))),
       it.why,
-      h('div', {class: 'note', style: 'margin-top:6px'}, fill(it.q, it.a))),
-      h('button', {class: 'big', id: 'next', onclick: function () { ses.i++; step(); }}, 'Дальше'));
-    afterAnswer(entry, ok, o);
+      h('div', {class: 'note', style: 'margin-top:6px'}, E.fill(it.q, it.answer))),
+      (!ok && ev) ? whyRow(ev) : null,
+      h('button', {class: 'big', id: 'next', onclick: function () { ses.i++; step(); }}, 'Дальше'),
+      flagButtons(it));
     var n = document.getElementById('next'); if (n) n.scrollIntoView({block: 'nearest'});
   }
   var dk = h('button', {class: 'ghost', onclick: function () { choose(null); }}, 'Не знаю');
@@ -352,15 +345,16 @@ function renderQuiz(entry) {
 function renderCard(entry) {
   var it = entry.it;
   var body = h('div');
-  var front = h('div', {class: 'card'}, h('div', {class: 'card-front'}, it.f), body);
+  var front = h('div', {class: 'card'}, h('div', {class: 'card-front'}, it.front), body);
   body.appendChild(h('button', {class: 'big', onclick: reveal}, 'Показать'));
   function reveal() {
     body.replaceChildren(
-      h('div', {class: 'card-back'}, it.b),
-      h('div', {class: 'card-ex'}, it.ex),
+      h('div', {class: 'card-back'}, it.back),
+      h('div', {class: 'card-ex'}, it.example),
       h('div', {class: 'two'},
         h('button', {class: 'no', onclick: function () { rate(false); }}, 'Не знала'),
-        h('button', {class: 'yes', onclick: function () { rate(true); }}, 'Знала')));
+        h('button', {class: 'yes', onclick: function () { rate(true); }}, 'Знала')),
+      flagButtons(it));
   }
   function rate(ok) { afterAnswer(entry, ok, null); ses.i++; step(); }
   show(h('div', null, topBar(), front));
@@ -368,95 +362,206 @@ function renderCard(entry) {
 
 function finish() {
   var s = ses; ses = null;
-  S.sessions.push({d: today(), mode: s.mode, n: s.total, ok: s.ok});
+  S.sessions.push({d: today(), mode: s.mode === 'gap' ? 'quiz' : s.mode === 'card' ? 'cards' : 'review', n: s.total, ok: s.ok});
   save();
   var uniq = [];
   s.wrong.forEach(function (x) { if (uniq.indexOf(x) < 0) uniq.push(x); });
   show(h('div', null,
     h('h1', null, 'Готово'),
     h('div', {class: 'res'}, s.ok + ' из ' + s.total),
-    h('div', {class: 'sub', style: 'text-align:center'}, 'с первого раза · серия: ' + streakInfo() + ' дн.'),
+    h('div', {class: 'sub', style: 'text-align:center'}, 'с первого раза · серия: ' + E.streak(S, today()) + ' дн.'),
     uniq.length ? h('h2', null, 'Запомни') : null,
     uniq.map(function (x) {
-      return h('div', {class: 'mist'}, s.mode === 'quiz'
-        ? [h('i', null, fill(x.q, x.a)), h('div', {class: 'note'}, x.why)]
-        : [x.f + ' → ', h('i', null, x.b)]);
+      return h('div', {class: 'mist'}, x.type === 'gap'
+        ? [h('i', null, E.fill(x.q, x.answer)), h('div', {class: 'note'}, x.why)]
+        : [x.front + ' → ', h('i', null, x.back)]);
     }),
-    h('button', {class: 'big', onclick: function () { startSession(s.mode); }}, 'Ещё подход'),
+    h('button', {class: 'big', onclick: function () { if (s.mode === 'review') startReview(); else startSession(s.mode); }}, 'Ещё подход'),
     h('button', {class: 'big alt', onclick: home}, 'Домой')));
 }
 
-/* ================= Отчёт недели ================= */
-function weekReportText() {
-  var t = today(), from = addDays(t, -6);
-  var log = S.log.filter(function (x) { return x.d >= from && x.d <= t; });
-  var sess = S.sessions.filter(function (x) { return x.d >= from && x.d <= t; });
-  var week = isoWeek(t);
-  var head = '## Тренажёр: ' + week + ' (' + from + ' — ' + t + ')\n';
-  if (!log.length) return head + '\nЗа эти 7 дней занятий нет.\n';
-  var total = log.length, ok = log.reduce(function (a, x) { return a + x.ok; }, 0);
-  var by = {}; CAT_KEYS.forEach(function (k) { by[k] = {n: 0, ok: 0}; });
-  var miss = {};
-  log.forEach(function (x) {
-    var it = BYID[x.id]; if (!it) return;
-    by[it.cat].n++; by[it.cat].ok += x.ok;
-    if (!x.ok) miss[x.id] = (miss[x.id] || 0) + 1;
-  });
-  var out = head + '\n[week:: ' + week + '] [sessions:: ' + sess.length + '] [answers:: ' + total + '] [correct:: ' + ok +
-    '] [acc:: ' + Math.round(100 * ok / total) + ']\n\n| Категория | Ответов | Верно | % |\n|---|---|---|---|\n';
-  CAT_KEYS.forEach(function (k) {
-    var a = by[k]; if (!a.n) return;
-    out += '| ' + CAT_LOW[k] + ' | ' + a.n + ' | ' + a.ok + ' | ' + Math.round(100 * a.ok / a.n) + ' |\n';
-  });
-  var ids = Object.keys(miss).sort(function (a, b) { return miss[b] - miss[a]; }).slice(0, 10);
-  if (ids.length) {
-    out += '\n### Ошибки недели (вставить в журнал)\n\n';
-    ids.forEach(function (id) {
-      var it = BYID[id], s = S.items[id] || {};
-      var line = '- ';
-      if (it.q) {
-        var was = (s.lw === undefined || s.lw === '') ? 'не знала' : '«' + fill(it.q, s.lw) + '»';
-        line += 'Было: ' + was + ' → Надо: «' + fill(it.q, it.a) + '» · Почему: ' + it.why;
-      } else {
-        line += 'Карточка: «' + it.f + '» → «' + it.b + '» · Пример: ' + it.ex;
-      }
-      // поля Dataview ставим в конце строки, в квадратных скобках (так их читает Dataview)
-      line += ' [cat:: ' + CAT_LOW[it.cat] + '] [src:: тренажёр] [miss:: ' + miss[id] + ']';
-      out += line + '\n';
-    });
-  }
-  return out;
-}
-function reportView() {
-  var ta = h('textarea', {readonly: 'readonly'}); ta.value = weekReportText();
-  var btn = h('button', {class: 'big', onclick: function () { copyFrom(ta, btn); }}, 'Скопировать');
-  show(h('div', null,
-    h('div', {class: 'top'}, h('button', {class: 'back', onclick: home}, '‹ Домой'), h('span')),
-    h('h1', null, 'Отчёт недели'),
-    h('div', {class: 'sub'}, 'Раз в неделю: скопируй и вставь в заметку недели в Obsidian на ноутбуке (отправь себе в мессенджер или на почту).'),
-    ta, btn));
+/* ================= Тетрадь ошибок ================= */
+function errorsView(flash) {
+  var w = E.weekErrors(CATALOG, S, today(), 7);
+  var rev = reviewCount();
+  var cnt = {};
+  w.app.forEach(function (r) { cnt[r.cat] = (cnt[r.cat] || 0) + r.miss; });
+  w.lesson.forEach(function (r) { cnt[r.cat] = (cnt[r.cat] || 0) + 1; });
+  var sum = CAT_KEYS.filter(function (k) { return cnt[k]; }).map(function (k) { return why(k) + ': ' + cnt[k]; });
+  show(h('div', null, backBar(),
+    h('h1', null, 'Тетрадь ошибок'),
+    h('div', {class: 'sub'}, 'за 7 дней'),
+    flash ? h('div', {class: 'tip'}, flash) : null,
+    sum.length ? h('div', {class: 'note', 'data-role': 'sum'}, sum.join(' · ')) : null,
+    rev ? h('button', {class: 'big', 'data-role': 'review', onclick: startReview}, 'Разбор недели', h('small', null, 'пунктов: ' + rev)) : null,
+    h('button', {class: 'big alt', 'data-role': 'add-lesson', onclick: function () { lessonView(); }}, '+ Ошибка с урока', h('small', null, 'ошибка не из тренажёра: было → надо')),
+    h('h2', null, 'В тренажёре (' + w.app.length + ')'),
+    w.app.length ? w.app.map(function (r) {
+      var it = r.it;
+      var main = it.type === 'gap'
+        ? ['Было: ' + (r.ch == null ? 'не знала' : '«' + E.fill(it.q, r.ch) + '»'), ' → Надо: «' + E.fill(it.q, it.answer) + '»']
+        : [it.front + ' → ', h('i', null, it.back)];
+      return h('div', {class: 'mist', 'data-role': 'err'}, h('div', null, main),
+        h('div', {class: 'note'}, why(r.cat) + (r.why ? ' (причина)' : ' (тема)') + ' · ошибок: ' + r.miss + (r.active ? '' : ' · убрано из занятий')));
+    }) : h('div', {class: 'note'}, 'Ошибок за неделю нет.'),
+    h('h2', null, 'С уроков (' + w.lesson.length + ')'),
+    w.lesson.length ? w.lesson.map(function (r) {
+      return h('div', {class: 'mist', 'data-role': 'lesson-err'}, h('div', null, 'Было: «' + r.was + '» → Надо: «' + r.should + '»'),
+        h('div', {class: 'note'}, why(r.cat) + ' · ' + r.d + (r.note ? ' · ' + r.note : '')));
+    }) : h('div', {class: 'note'}, 'Пока пусто. Сюда можно записать ошибку, которую ты сделала на уроке.')));
 }
 
-/* ================= Резервная копия ================= */
+function lessonView() {
+  var cat = 'other', msg = h('div', {class: 'warn', style: 'display:none'});
+  var was = h('input', {type: 'text', id: 'l-was', maxlength: String(E.MAX_TEXT), placeholder: 'Как было (что ты сказала или написала)', autocapitalize: 'off', autocomplete: 'off'});
+  var should = h('input', {type: 'text', id: 'l-should', maxlength: String(E.MAX_TEXT), placeholder: 'Как правильно', autocapitalize: 'off', autocomplete: 'off'});
+  var note = h('input', {type: 'text', id: 'l-note', maxlength: String(E.MAX_TEXT), placeholder: 'Пояснение (необязательно)', autocomplete: 'off'});
+  var chips = h('div', {class: 'chips'});
+  CAT_KEYS.forEach(function (k) {
+    chips.appendChild(h('button', {class: 'chip' + (k === cat ? ' on' : ''), 'data-cat': k, onclick: function () {
+      cat = k; Array.prototype.forEach.call(chips.children, function (c) { c.classList.toggle('on', c.getAttribute('data-cat') === k); });
+    }}, why(k)));
+  });
+  show(h('div', null, backBar(function () { errorsView(); }),
+    h('h1', null, 'Ошибка с урока'),
+    h('div', {class: 'sub'}, 'Одна ошибка — одна запись. Пример: было «vado a Roma da treno» → надо «vado a Roma in treno».'),
+    was, should, note,
+    h('h2', null, 'Почему?'), chips, msg,
+    h('button', {class: 'big', 'data-role': 'save-lesson', onclick: function () {
+      var r = E.addLessonError(S, {was: was.value, should: should.value, note: note.value, cat: cat}, today(), Date.now());
+      if (!r.ok) { msg.style.display = ''; msg.textContent = 'Не записано: ' + r.error + '.'; return; }
+      save(); errorsView('Записано ✓');
+    }}, 'Записать')));
+}
+
+/* ================= Журнал для Obsidian ================= */
+function journalView(offset) {
+  var msg = h('div', {class: 'note', 'data-role': 'msg', style: 'margin:8px 0'});
+  var rng = E.weekRange(today(), offset);
+  var j = E.journalMd(CATALOG, S, rng, today());
+  var box = h('div');
+  var chips = h('div', {class: 'chips'},
+    h('button', {class: 'chip' + (offset === 0 ? ' on' : ''), 'data-role': 'week-0', onclick: function () { journalView(0); }}, 'Эта неделя'),
+    h('button', {class: 'chip' + (offset === -1 ? ' on' : ''), 'data-role': 'week--1', onclick: function () { journalView(-1); }}, 'Прошлая неделя'));
+  var parts = [backBar(),
+    h('h1', null, 'Журнал для Obsidian'),
+    h('div', {class: 'sub'}, 'Раз в неделю: подготовь файл и отправь его себе в Telegram («Избранное»), на ноутбуке положи в папку «Тренажёр» хранилища Obsidian.'),
+    chips,
+    h('div', {class: 'note', 'data-role': 'range'}, rng.week + ' · ' + rng.from + ' — ' + rng.to)];
+  if (j.empty) {
+    parts.push(h('div', {class: 'note', 'data-role': 'empty'}, 'За эту неделю занятий и записанных ошибок нет: файл не нужен.'));
+  } else {
+    var c = j.counts;
+    parts.push(
+      h('div', {class: 'note', 'data-role': 'counts'}, 'Подходов: ' + c.sessions + ' · ответов: ' + c.answers + ' · ошибок: ' + c.errors + (c.lesson ? ' · с уроков: ' + c.lesson : '')),
+      h('button', {class: 'big', 'data-role': 'make-journal', onclick: function () {
+        deliver(new Blob([j.text], {type: 'text/markdown'}), j.name, msg, 'Журнал тренажёра');
+      }}, 'Подготовить журнал', h('small', null, 'файл «' + j.name + '»')),
+      msg,
+      h('button', {class: 'link', 'data-role': 'show-journal', onclick: function () {
+        var ta = h('textarea', {readonly: 'readonly', 'data-role': 'journal-text'}); ta.value = j.text;
+        var cb = h('button', {class: 'big alt', onclick: function () { copyFrom(ta, cb); }}, 'Скопировать текст');
+        box.replaceChildren(ta, cb);
+      }}, 'Показать текст (запасной путь)'));
+    parts.push(box);
+  }
+  show(h('div', null, parts));
+}
+
+/* ================= Резервная копия: один файл (пакеты + прогресс) ================= */
+var useGz = false;
+function fileBlob(text) {
+  if (useGz && typeof CompressionStream !== 'undefined') {
+    return E.textToGzip(text).then(function (buf) { return {blob: new Blob([buf], {type: 'application/gzip'}), ext: '.json.gz'}; });
+  }
+  return Promise.resolve({blob: new Blob([text], {type: 'application/json'}), ext: '.json'});
+}
+function deliver(blob, name, msg, title) {
+  function download() {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    msg.textContent = 'Файл «' + name + '» сохранён на телефон (смотри «Загрузки» / Файлы). Отправь его себе в Telegram или сохрани в заметки.';
+  }
+  var file = null;
+  try { file = new File([blob], name, {type: blob.type}); } catch (e) { file = null; }
+  if (file && navigator.canShare && navigator.share && navigator.canShare({files: [file]})) {
+    navigator.share({files: [file], title: title || 'Копия тренажёра'}).then(function () { msg.textContent = 'Готово ✓ (отправлено через «Поделиться»).'; },
+      function (e) { if (e && e.name === 'AbortError') { msg.textContent = 'Отменено. Копия не сохранена.'; return; } download(); });
+  } else download();
+}
 function backupView() {
-  var ta = h('textarea', {readonly: 'readonly'}); ta.value = JSON.stringify(S);
-  var cb = h('button', {class: 'big', onclick: function () { copyFrom(ta, cb); }}, 'Скопировать копию');
-  var inp = h('textarea', {placeholder: 'Вставь сюда ранее скопированную копию'});
-  var msg = h('div', {class: 'note'});
-  var rb = h('button', {class: 'big alt', onclick: function () {
-    var txt = inp.value.trim(); if (!txt) return;
-    var obj;
-    try { obj = JSON.parse(txt); } catch (e) { msg.textContent = 'Это не похоже на копию (ошибка чтения).'; return; }
-    if (!obj || obj.v !== 1 || !obj.items) { msg.textContent = 'Это не похоже на копию тренажёра.'; return; }
-    if (rb.getAttribute('data-sure') !== '1') { rb.setAttribute('data-sure', '1'); rb.firstChild.nodeValue = 'Точно заменить текущий прогресс?'; return; }
-    S = obj; S.log = S.log || []; S.sessions = S.sessions || []; S.settings = Object.assign(fresh().settings, S.settings || {});
-    save(); home();
-  }}, 'Восстановить из копии');
+  var msg = h('div', {class: 'note', 'data-role': 'msg', style: 'margin:8px 0'});
+  var out = h('div', {'data-role': 'out'});
+  var textBox = h('div');
+  var gzChip = (typeof CompressionStream !== 'undefined')
+    ? h('button', {class: 'chip', 'data-role': 'gz', onclick: function () { useGz = !useGz; gzChip.classList.toggle('on', useGz); }}, 'Сжать (.gz, меньше размер)') : null;
+  if (gzChip && useGz) gzChip.classList.add('on');
+  var mkBackupText = function () { return JSON.stringify(E.makeBackup(S, activeRaw(), today())); };
+
+  var saveBtn = h('button', {class: 'big', 'data-role': 'save-file', onclick: function () {
+    var text = mkBackupText();
+    fileBlob(text).then(function (r) {
+      S.settings.lastBackup = today(); save();
+      deliver(r.blob, 'trainer-kopiya-' + today() + r.ext, msg);
+    }, function (e) { msg.textContent = 'Не получилось подготовить файл: ' + (e && e.message ? e.message : e); });
+  }}, 'Сохранить копию файлом', h('small', null, 'все пакеты и весь прогресс в одном файле'));
+
+  var showTxt = h('button', {class: 'link', 'data-role': 'show-text', onclick: function () {
+    var ta = h('textarea', {readonly: 'readonly'}); ta.value = mkBackupText();
+    var cb = h('button', {class: 'big alt', onclick: function () { S.settings.lastBackup = today(); save(); copyFrom(ta, cb); }}, 'Скопировать текст копии');
+    textBox.replaceChildren(ta, cb);
+  }}, 'Показать текст копии (запасной путь)');
+
+  var pick = h('input', {type: 'file', id: 'pick', style: 'display:none', onchange: function () {
+    var f = pick.files && pick.files[0]; if (!f) return;
+    f.arrayBuffer().then(E.bytesToText).then(onText, function (e) { msg.textContent = 'Файл не прочитан: ' + (e && e.message ? e.message : e); });
+    pick.value = '';
+  }});
+  var pickBtn = h('button', {class: 'big alt', 'data-role': 'pick-file', onclick: function () { pick.click(); }}, 'Загрузить файл', h('small', null, 'копию или пакет упражнений'));
+  var inp = h('textarea', {placeholder: 'Или вставь сюда текст копии (запасной путь)', 'data-role': 'paste'});
+  var readBtn = h('button', {class: 'link', 'data-role': 'read-text', onclick: function () { onText(inp.value); }}, 'Прочитать из текста');
+
+  function known() { return activeRaw(); }
+  function onText(text) {
+    out.replaceChildren(); msg.textContent = '';
+    var p = E.parseUpload(text);
+    if (p.kind === 'error') { msg.textContent = 'Не получилось: ' + p.error + '.'; return; }
+    if (p.kind === 'pack') {
+      var r = E.importPack(localStorage, p.text, known());
+      if (!r.ok) { msg.textContent = 'Пакет не установлен: ' + r.errors.join('; ') + '.'; return; }
+      rebuildCatalog();
+      msg.textContent = 'Пакет «' + r.title + '» установлен: пунктов ' + r.count + (r.replaced ? ' (обновление с версии ' + r.replaced + ')' : '') + '.' + (r.warnings.length ? ' Замечания: ' + r.warnings.join('; ') : '');
+      return;
+    }
+    var names = (p.packs || []).map(function (x) { return x && x.title ? x.title : '?'; });
+    var sum = 'Копия' + (p.created ? ' от ' + p.created : '') + ': пакеты — ' + (names.length ? names.join(', ') : 'нет (только прогресс)') +
+      '; ответов в журнале: ' + p.state.events.length + '; подходов: ' + p.state.sessions.length + '; ошибок с урока: ' + p.state.lessonErrors.length + '. ' +
+      'Сейчас в приложении: ответов ' + S.events.length + ', подходов ' + S.sessions.length + '.';
+    var mergeBtn = h('button', {class: 'big', 'data-role': 'do-merge', onclick: function () { run('merge'); }}, 'Объединить с текущим', h('small', null, 'ничего не стирает: берёт лучшее из обоих'));
+    var replBtn = h('button', {class: 'big alt', 'data-role': 'do-replace', onclick: function () {
+      if (replBtn.getAttribute('data-sure') !== '1') { replBtn.setAttribute('data-sure', '1'); replBtn.firstChild.nodeValue = 'Точно заменить текущий прогресс?'; return; }
+      run('replace');
+    }}, 'Заменить текущий прогресс');
+    out.replaceChildren(h('div', {class: 'card', 'data-role': 'summary'}, sum), mergeBtn, replBtn);
+    function run(mode) {
+      var rr = E.restoreBackup(localStorage, p, S, mode, known());
+      if (!rr.ok) { msg.textContent = 'Не получилось: ' + rr.errors.join('; '); return; }
+      S = rr.state; rebuildCatalog(); save();
+      out.replaceChildren();
+      msg.textContent = 'Готово ✓ ' + (mode === 'merge' ? 'Прогресс объединён.' : 'Прогресс заменён.') +
+        (rr.installed.length ? ' Установлены пакеты: ' + rr.installed.join(', ') + '.' : '') + (rr.warnings.length ? ' Внимание: ' + rr.warnings.join('; ') : '');
+    }
+  }
+
   show(h('div', null,
-    h('div', {class: 'top'}, h('button', {class: 'back', onclick: home}, '‹ Домой'), h('span')),
+    backBar(),
     h('h1', null, 'Резервная копия'),
-    h('div', {class: 'sub'}, 'Прогресс хранится только в этом телефоне. Скопируй и сохрани в заметку или отправь себе — тогда его можно вернуть, если данные пропадут.'),
-    ta, cb, h('h2', null, 'Восстановление'), inp, rb, msg));
+    h('div', {class: 'sub'}, 'Прогресс хранится только в этом телефоне. Один файл возвращает всё: пакеты упражнений и прогресс. Последняя копия: ' + (S.settings.lastBackup || 'ещё не было') + '.'),
+    saveBtn, gzChip, msg, showTxt, textBox,
+    h('h2', null, 'Загрузить'),
+    h('div', {class: 'note'}, 'Файл копии (восстановить) или файл пакета (добавить новые упражнения).'),
+    pickBtn, pick, inp, readBtn, out));
 }
 
 /* ================= Настройки ================= */
@@ -466,22 +571,68 @@ function settingsView() {
   }));
   var rst = h('button', {class: 'big alt', onclick: function () {
     if (rst.getAttribute('data-sure') !== '1') { rst.setAttribute('data-sure', '1'); rst.firstChild.nodeValue = 'Точно стереть весь прогресс?'; return; }
-    S = fresh(); save(); home();
+    S = E.freshState(); save(); home();
   }}, 'Стереть прогресс');
+  var doubts = CATALOG.items.filter(function (x) { return S.items[x.key] && S.items[x.key].doubt; });
+  var early = E.earlyList(CATALOG, S);
+  var imp = importedIds();
   show(h('div', null,
-    h('div', {class: 'top'}, h('button', {class: 'back', onclick: home}, '‹ Домой'), h('span')),
+    backBar(),
     h('h1', null, 'Настройки'),
     h('h2', null, 'Заданий в подходе'), seg,
+    h('h2', null, 'Пакеты (' + CATALOG.packs.length + ')'),
+    CATALOG.packs.map(function (p) {
+      var isImp = imp.indexOf(p.packId) >= 0;
+      var rm = isImp ? h('button', {class: 'link', 'data-role': 'remove-pack', onclick: function () {
+        if (rm.getAttribute('data-sure') !== '1') { rm.setAttribute('data-sure', '1'); rm.textContent = 'Точно убрать? Прогресс останется'; return; }
+        E.removeImportedPack(localStorage, p.packId); rebuildCatalog(); save(); settingsView();
+      }}, 'Убрать') : null;
+      return h('div', {class: 'mist', 'data-role': 'pack'}, h('b', null, p.title), ' · версия ' + p.version + ' · пунктов: ' + p.count,
+        h('div', {class: 'note'}, isImp ? 'загружен файлом' : 'встроенный'), rm);
+    }),
+    h('h2', null, 'Рано: на потом (' + early.length + ')'),
+    early.length ? early.map(function (x) {
+      return h('div', {class: 'mist', 'data-role': 'early-item'},
+        h('i', null, itemText(x)),
+        h('button', {class: 'link', onclick: function () { E.setEarly(S, x.key, false, today()); save(); settingsView(); }}, 'Вернуть в занятия'));
+    }) : h('div', {class: 'note'}, 'Пусто. Сюда попадают пункты, которые для тебя ещё рано.'),
+    h('h2', null, 'Сомнения (' + doubts.length + ')'),
+    doubts.length ? doubts.map(function (x) {
+      return h('div', {class: 'mist'},
+        h('i', null, itemText(x)),
+        h('button', {class: 'link', onclick: function () { E.setDoubt(S, x.key, false, today()); save(); settingsView(); }}, 'Вернуть в занятия'));
+    }) : h('div', {class: 'note'}, 'Пусто. Сюда попадают пункты, в которых ты усомнилась.'),
     h('h2', null, 'Прогресс'),
     h('div', {class: 'note'}, 'Перед стиранием лучше сделать резервную копию.'),
     rst));
 }
 
 /* ================= Старт ================= */
+function loadPacks() {
+  return Promise.all(BUILTIN_PACKS.map(function (url) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(url); return r.json(); }).catch(function () { return null; });
+  })).then(function (packs) {
+    BUILTIN_BAD = packs.filter(function (p) { return p === null; }).length;
+    BUILTIN_RAW = packs.filter(function (p) { return p !== null; });
+    rebuildCatalog();     // + пакеты, загруженные файлом
+  });
+}
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   navigator.serviceWorker.register('sw.js').catch(function () {});
 }
-home();
+try { localStorage.setItem('__t', '1'); localStorage.removeItem('__t'); } catch (e) { storageOk = false; }
+var loaded = E.loadState(localStorage);
+S = loaded.state; if (!loaded.storageOk) storageOk = false;
+if (loaded.source === 'migrated') save();     // миграция v1 → v2 один раз; ключ v1 не трогаем
+app.appendChild(h('div', {class: 'sub'}, 'Загрузка…'));
+loadPacks().then(function () {
+  if (!CATALOG.items.length) {
+    show(h('div', null, h('h1', null, 'Preposizioni'),
+      h('div', {class: 'warn'}, 'Не удалось загрузить вопросы. Проверь интернет и открой приложение ещё раз. Прогресс не потерян.')));
+    return;
+  }
+  home();
+});
 })();
 </script>
 </body>

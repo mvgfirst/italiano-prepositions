@@ -1,8 +1,8 @@
 /* Service worker: даёт работу без интернета.
- * Стратегия: сначала сеть (чтобы новые вопросы подтягивались), при отсутствии сети: копия из кэша.
+ * Стратегия: сначала сеть (чтобы новые вопросы и пакеты подтягивались), при отсутствии сети: копия из кэша.
  * Меняешь список файлов или хочешь сбросить кэш у всех — увеличь номер в CACHE. */
-var CACHE = 'preposizioni-v1';
-var FILES = ['./', 'index.html', 'questions.js', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
+var CACHE = 'preposizioni-v2-3';
+var FILES = ['./', 'index.html', 'engine.js', 'packs/preposizioni.json', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
